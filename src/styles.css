@@ -1,3 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 @import "tailwindcss-primeui";
+
+@layer base {
+  :root {
+    --color-bg: #F8F9FA;
+    --color-surface: #FFFFFF;
+    --color-text: #2C3E50;
+    --color-text-muted: #7F8C8D;
+    --color-primary: #2ECC71;
+    --color-error: #E74C3C;
+  }
+
+  .dark {
+    --color-bg: #0F172A;
+    --color-surface: #1E293B;
+    --color-text: #F8FAFC;
+    --color-text-muted: #94A3B8;
+    --color-primary: #4ADE80;
+    --color-error: #F87171;
+  }
+}
+
+body {
+  @apply bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300;
+}
