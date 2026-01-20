@@ -2,7 +2,7 @@
   <app-loading />
 }
 
-<main [@routeAnimations]="getRouteAnimationData()" [class.opacity-50]="loading$ | async">
+<main [@routeAnimations]="getRouteAnimationData()" class="w-screen h-screen" [class.opacity-50]="loading$ | async">
   <router-outlet />
 </main>
 
