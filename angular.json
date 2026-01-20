@@ -32,7 +32,11 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "polyfills": [
+              "@angular/localize/init"
+            ],
+            "localize": ["pt-BR", "en-US"]
           },
           "configurations": {
             "production": {
@@ -54,6 +58,9 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "en-US": {
+              "localize": ["en-US"]
             }
           },
           "defaultConfiguration": "production"
@@ -66,12 +73,21 @@
             },
             "development": {
               "buildTarget": "protocolo-360:build:development"
+            },
+            "en-US": {
+              "buildTarget": "protocolo-360:build:en-US"
             }
           },
           "defaultConfiguration": "development"
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        }
+      },
+      "i18n": {
+        "sourceLocale": "pt-BR",
+        "locales": {
+          "en-US": "src/locale/messages.en.xlf"
         }
       }
     }

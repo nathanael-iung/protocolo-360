@@ -2,25 +2,25 @@
   <form class="min-w-[90vw] md:min-w-[40vw] flex flex-col items-center gap-5 p-10 rounded-md bg-[var(--color-surface)]">
     <div class="flex items-center justify-center gap-x-2 pb-10">
       <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
-      <p class="font-bold text-3xl">
+      <p class="font-bold text-3xl" i18n="@@appName">
         Protocolo 360
       </p>
     </div>
     <label class="flex flex-col w-full">
-      <span class="label text-lg">
-        Login
+      <span class="label text-lg" i18n="@@user">
+        Usuário
       </span>
       <input type="text" pInputText [formField]="loginForm.username" />
     </label>
     <label class="flex flex-col w-full">
-      <span class="label text-lg">
+      <span class="label text-lg" i18n="@@password">
         Senha
       </span>
       <p-password [formField]="loginForm.password" [toggleMask]="true"
         [feedback]="false" inputStyleClass="w-full" />
     </label>
     <p-button label="Login" class="w-full" styleClass="w-full" (click)="submitLogin()" />
-    <span class="text-primary cursor-pointer text-sm">Esqueci minha senha</span>
+    <span class="text-primary cursor-pointer text-sm" i18n="@@resetPassword">Esqueci minha senha</span>
     <p-divider>
       <span class="font-semibold">OU</span>
     </p-divider>
