@@ -7,12 +7,13 @@ import { providePrimeNG } from "primeng/config";
 
 import Aura from '@primeuix/themes/aura';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MessageService } from "primeng/api";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideClientHydration(withEventReplay()),
+    // provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
@@ -25,6 +26,7 @@ export const appConfig: ApplicationConfig = {
             // }
           },
       }
-    })
+    }),
+    MessageService
   ]
 };

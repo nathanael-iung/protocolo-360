@@ -1,5 +1,6 @@
-<div class="w-screen h-screen flex items-center justify-center">
-  <form class="min-w-[90vw] md:min-w-[40vw] flex flex-col items-center gap-5 p-10 rounded-md bg-[var(--color-surface)]">
+<div class="w-screen h-screen flex items-center justify-center" (keydown.enter)="submitLogin()">
+  <form
+    class="min-w-[90vw] md:min-w-[45vw] min-h-[90vh] md:min-h-[45vh] flex flex-col items-center justify-center gap-5 p-10 rounded-md bg-[var(--color-surface)]">
     <div class="flex items-center justify-center gap-x-2 pb-10">
       <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
       <p class="font-bold text-3xl" i18n="@@appName">
@@ -17,13 +18,18 @@
         Senha
       </span>
       <p-password [formField]="loginForm.password" [toggleMask]="true"
-        [feedback]="false" inputStyleClass="w-full" />
+        [feedback]="false" inputStyleClass="w-full"
+        autocomplete="new-password" />
     </label>
-    <p-button label="Login" class="w-full" styleClass="w-full" (click)="submitLogin()" />
-    <span class="text-primary cursor-pointer text-sm" i18n="@@resetPassword">Esqueci minha senha</span>
+    <p-button label="Login" class="w-full" styleClass="w-full"
+      appKeyEvent="Enter" (event)="submitLogin()"
+      (click)="submitLogin()" />
+    <span class="text-primary cursor-pointer text-sm" i18n="@@resetPassword"
+      (click)="navigateToResetPassword()">Esqueci minha senha</span>
     <p-divider>
       <span class="font-semibold">OU</span>
     </p-divider>
-    <p-button label="Registre-se aqui" severity="secondary" class="w-full" styleClass="w-full" (click)="navigateToCadastro()" />
+    <p-button label="Registre-se aqui" severity="secondary" class="w-full" styleClass="w-full"
+      (click)="navigateToRegister()" />
   </form>
 </div>

@@ -1,11 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { slideInAnimation } from "./shared/utils/route-animations";
 import { LoadingService } from "./shared/services/loading/loading-service";
 import { Loading } from "./shared/components/loading/loading";
 import { CommonModule } from "@angular/common";
-import { Toast } from "./shared/components/toast/toast";
-import { MessageService } from "primeng/api";
+import { Toast } from "@shared/components/toast/toast";
 
 @Component({
   selector: 'app-root',
@@ -17,8 +16,7 @@ import { MessageService } from "primeng/api";
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
-  animations: [slideInAnimation],
-  providers: [MessageService]
+  animations: [slideInAnimation]
 })
 export class App {
 

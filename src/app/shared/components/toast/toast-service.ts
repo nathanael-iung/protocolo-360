@@ -11,25 +11,25 @@ interface iToast {
 })
 export class ToastService {
 
-  private toastrSuccess = new Subject<iToast>();
-  private toastrSuccess$ = this.toastrSuccess.asObservable();
+  private toastSuccess = new Subject<iToast>();
+  private toastSuccess$ = this.toastSuccess.asObservable();
 
-  private toastrWarning = new Subject<iToast>();
-  toastrWarning$ = this.toastrWarning.asObservable();
+  private toastWarning = new Subject<iToast>();
+  toastWarning$ = this.toastWarning.asObservable();
 
-  private toastrDanger = new Subject<iToast>();
-  toastrDanger$ = this.toastrDanger.asObservable();
+  private toastDanger = new Subject<iToast>();
+  toastDanger$ = this.toastDanger.asObservable();
 
   success(message: string, title?: string): void {
     const data = {
       title,
       message
     }
-    this.toastrSuccess.next(data)
+    this.toastSuccess.next(data)
   }
 
   listenSuccess(): Observable<iToast> {
-    return this.toastrSuccess$
+    return this.toastSuccess$
   }
 
   warning(message: string, title?: string): void {
@@ -37,11 +37,11 @@ export class ToastService {
       title,
       message
     }
-    this.toastrWarning.next(data)
+    this.toastWarning.next(data)
   }
 
   listenWarning(): Observable<iToast> {
-    return this.toastrWarning$
+    return this.toastWarning$
   }
 
   danger(message: string, title?: string): void {
@@ -49,10 +49,10 @@ export class ToastService {
       title,
       message
     }
-    this.toastrDanger.next(data)
+    this.toastDanger.next(data)
   }
 
   listenDanger(): Observable<iToast> {
-    return this.toastrDanger$
+    return this.toastDanger$
   }
 }
