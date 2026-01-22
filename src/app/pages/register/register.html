@@ -1,0 +1,94 @@
+<div class="w-screen h-screen flex items-center justify-center">
+  <div class="min-w-[90vw] md:min-w-[45vw] min-h-[95vh] md:min-h-[45vh] flex flex-col items-center justify-between gap-5 p-10 rounded-md bg-[var(--color-surface)]">
+    <div class="flex items-center justify-center gap-x-2 pb-10">
+      <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
+      <p class="font-bold text-3xl" i18n="@@appName">
+        Protocolo 360
+      </p>
+    </div>
+
+    <div class="card flex justify-center w-full min-h-[60vh]">
+      <p-stepper [(value)]="activeStep" class="w-full">
+        <p-step-list>
+            <p-step [value]="1" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <div
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                          <span class="material-symbols-outlined">
+                            person
+                          </span>
+                        </div>
+                    </button>
+                </ng-template>
+            </p-step>
+            <p-step [value]="2" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <div
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                          <span class="material-symbols-outlined">
+                            rewarded_ads
+                          </span>
+                        </div>
+                    </button>
+                </ng-template>
+            </p-step>
+            <p-step [value]="3" class="flex flex-row flex-auto gap-2">
+                <ng-template #content let-activateCallback="activateCallback" let-value="value">
+                    <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                        <span
+                            class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+                            [ngClass]="{
+                                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                                'border-surface': value > activeStep
+                            }"
+                        >
+                          <span class="material-symbols-outlined">
+                            star_shine
+                          </span>
+                        </span>
+                    </button>
+                </ng-template>
+            </p-step>
+        </p-step-list>
+        <p-step-panels>
+            <p-step-panel [value]="1">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <app-user-information />
+                </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="2">
+                <ng-template #content let-activateCallback="activateCallback">
+                  <app-goals />
+                </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="3">
+                <ng-template #content let-activateCallback="activateCallback">
+                  <app-welcome />
+                </ng-template>
+            </p-step-panel>
+        </p-step-panels>
+      </p-stepper>
+    </div>
+
+
+    <div class="flex justify-end gap-2 w-full">
+      <p-button label="Voltar" severity="secondary"
+        (click)="true" />
+      <p-button label="Próximo" severity="primary"
+        appKeyEvent="Enter" (event)="true"
+        (click)="true" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="flex flex-wrap justify-center max-h-[55vh] gap-5 overflow-y-auto w-full">
+  @for (goal of goals(); track $index) {
+    <p-togglebutton [onLabel]="goal.fullName" [offLabel]="goal.fullName" />
+  }
+</div>

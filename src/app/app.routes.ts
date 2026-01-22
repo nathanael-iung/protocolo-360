@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Login } from "./pages/login/login";
 
 export const routes: Routes = [
   { path: '',
@@ -13,6 +12,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/login/login').then(m => m.Login),
     data: {
       animation: 'Login'
+    }
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register').then(m => m.Register),
+    data: {
+      animation: 'Register'
     }
   },
   {

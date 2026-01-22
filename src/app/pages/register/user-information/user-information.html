@@ -1,0 +1,48 @@
+<form class="w-full flex flex-col items-center justify-between gap-5 max-h-[55vh] overflow-y-auto">
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@fullName">
+      Nome social
+    </span>
+    <input type="text" pInputText [formField]="userInformationForm.fullName" />
+  </label>
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@birthDate">
+      Data de nascimento
+    </span>
+    <input type="text" pInputText [formField]="userInformationForm.birthDate" />
+  </label>
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@phoneNumber">
+      Celular
+    </span>
+    <input type="text" pInputText [formField]="userInformationForm.phoneNumber" />
+  </label>
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@gender">
+      Sexo
+    </span>
+    <input type="text" pInputText [formField]="userInformationForm.gender" />
+  </label>
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@email">
+      E-mail
+    </span>
+    <input type="text" pInputText [formField]="userInformationForm.email" />
+  </label>
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@password">
+      Senha
+    </span>
+    <p-password [formField]="userInformationForm.password" [toggleMask]="true"
+      [feedback]="false" inputStyleClass="w-full"
+      autocomplete="new-password" />
+  </label>
+  <label class="flex flex-col w-full">
+    <span class="label text-lg" i18n="@@confirmPassword">
+      Confirmar senha
+    </span>
+    <p-password [formField]="userInformationForm.confirmPassword" [toggleMask]="true"
+      [feedback]="false" inputStyleClass="w-full"
+      autocomplete="new-password" />
+  </label>
+</form>
