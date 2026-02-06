@@ -21,12 +21,12 @@
 - **Performance:** Always set `changeDetection: ChangeDetectionStrategy.OnPush`.
 - **Lifecycle Management:** Prefer `effect()` for side effects and `computed()` for derived state over `ngOnChanges` or manual subscriptions.
 
-## 💅 Styling & UI (Tailwind 4 + PrimeNG 21)
-- **Frameworks:** Use **Tailwind 4** for layout/spacing and **PrimeNG 21** for complex widgets (Steppers, Tables, Charts).
+## 💅 Styling & UI (Tailwind 4 + Spartan NG)
+- **Frameworks:** Use **Tailwind 4** for layout/spacing and **Spartan NG** for complex widgets (Steppers, Tables, Charts).
 - **Theme (Dark Mode):** - Primary Background: `#0F172A` (Slate 950).
   - Primary Accent: `#4ADE80` (Emerald 400).
   - Use `dark:` variants for all custom classes.
-- **Accessibility:** Use semantic HTML tags (`<main>`, `<nav>`, `<article>`) and ARIA labels where PrimeNG components don't provide them automatically.
+- **Accessibility:** Use semantic HTML tags (`<main>`, `<nav>`, `<article>`) and ARIA labels where Spartan NG components don't provide them automatically.
 
 ## 🛠️ State Management & Services
 - **Signal Services:** Shared state must be exposed as `readonly` Signals.

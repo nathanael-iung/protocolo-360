@@ -1,25 +1,31 @@
 import { Component, inject, signal } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
 import { iLoginForm } from "./login.model";
 import { form, required, FormField, minLength } from '@angular/forms/signals';
-import { DividerModule } from 'primeng/divider';
 import { CommonModule } from "@angular/common";
 import { KeyEvent } from "@shared/directives/key-event/key-event";
 import { ToastService } from "@shared/components/toast/toast-service";
 import { Router } from "@angular/router";
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideUser, lucideLock, lucideMoveRight, lucideCirclePlus } from '@ng-icons/lucide'
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 
 @Component({
   selector: 'app-login',
+  providers: [provideIcons({lucideUser, lucideLock, lucideMoveRight, lucideCirclePlus})],
   imports: [
-    InputTextModule,
-    PasswordModule,
-    ButtonModule,
     FormField,
-    DividerModule,
     CommonModule,
     KeyEvent,
+    HlmInputGroupImports,
+    NgIcon,
+    HlmButtonImports,
+    HlmIconImports,
+    HlmLabelImports,
+    HlmSeparatorImports
   ],
   templateUrl: './login.html',
   styleUrl: './login.css'
@@ -42,7 +48,7 @@ export class Login {
   })
 
   submitLogin(): void {
-    if(this.loginForm().invalid()){
+    if (this.loginForm().invalid()) {
       this.toastService.danger("Informe o usuário e senha para prosseguir")
       return
     }
@@ -50,7 +56,7 @@ export class Login {
   }
 
   navigateToRegister(): void {
-    this.router.navigate(['login'])
+    this.router.navigate(['register'])
   }
 
   navigateToResetPassword(): void {

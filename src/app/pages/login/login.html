@@ -1,36 +1,51 @@
-<div class="w-screen h-screen flex items-center justify-center">
-  <div class="min-w-[90vw] md:min-w-[45vw] min-h-[95vh] md:min-h-[45vh] flex flex-col items-center justify-between gap-5 p-10 rounded-md bg-[var(--color-surface)]">
-    <div class="flex items-center justify-center gap-x-2 pb-10">
-      <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
-      <p class="font-bold text-3xl" i18n="@@appName">
-        Protocolo 360
-      </p>
+<div class="w-screen h-screen flex flex-col items-center justify-center">
+  <div class="flex items-center justify-center gap-x-2 pb-10">
+    <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
+    <p class="font-bold text-3xl" i18n="@@appName">
+      Protocolo 360
+    </p>
+  </div>
+  <div class="w-[90vw] md:w-[45vw] flex flex-col items-center justify-between gap-5 p-10 rounded-md bg-[var(--color-surface)]">
+    <div class="flex flex-col items-center gap-2">
+      <p class="text-2xl font-semibold">Bem-vindo!</p>
+      <p class="text-xs font-light">Insira suas informações abaixo para prosseguir</p>
     </div>
     <form class="w-full flex flex-col items-center justify-between gap-5">
-      <label class="flex flex-col w-full">
-        <span class="label text-lg" i18n="@@user">
-          Usuário
-        </span>
-        <input type="text" pInputText [formField]="loginForm.username" />
-      </label>
-      <label class="flex flex-col w-full">
-        <span class="label text-lg" i18n="@@password">
-          Senha
-        </span>
-        <p-password [formField]="loginForm.password" [toggleMask]="true"
-          [feedback]="false" inputStyleClass="w-full"
-          autocomplete="new-password" />
-      </label>
-      <p-button label="Login" class="w-full" styleClass="w-full"
-        appKeyEvent="Enter" (event)="submitLogin()"
-        (click)="submitLogin()" />
+      <div class="flex flex-col w-full gap-1">
+        <label hlmLabel i18n="@@user">Usuário</label>
+        <div hlmInputGroup>
+          <input hlmInputGroupInput [formField]="loginForm.username" autocomplete="new-password" />
+          <div hlmInputGroupAddon class="mr-2.5">
+              <ng-icon name="lucideUser" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-full gap-1">
+        <label hlmLabel i18n="@@password">Senha</label>
+        <div hlmInputGroup>
+          <input hlmInputGroupInput type="password" [formField]="loginForm.password" autocomplete="new-password" />
+          <div hlmInputGroupAddon class="mr-2.5">
+              <ng-icon name="lucideLock" />
+          </div>
+        </div>
+      </div>
+      <button hlmBtn type="button" class="w-full flex items-center justify-center gap-2 cursor-pointer"
+        appKeyEvent="Enter" (event)="submitLogin()" (click)="submitLogin()">
+        Login
+        <ng-icon hlm size="sm" name="lucideMoveRight" />
+      </button>
       <span class="text-primary cursor-pointer text-sm" i18n="@@resetPassword"
         (click)="navigateToResetPassword()">Esqueci minha senha</span>
-      <p-divider>
+      <div class="flex gap-2 items-center">
+        <hlm-separator class="!w-50" />
         <span class="font-semibold">OU</span>
-      </p-divider>
-      <p-button label="Registre-se aqui" severity="secondary" class="w-full" styleClass="w-full"
-        (click)="navigateToRegister()" />
+        <hlm-separator class="!w-50" />
+      </div>
+      <button hlmBtn type="button" variant="secondary" class="w-full flex items-center justify-center gap-2 cursor-pointer"
+        (click)="navigateToRegister()">
+        Registre-se aqui
+        <ng-icon hlm size="sm" name="lucideCirclePlus" />
+      </button>  
     </form>
     <span></span>
   </div>

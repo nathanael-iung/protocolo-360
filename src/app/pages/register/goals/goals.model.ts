@@ -1,4 +1,4 @@
 export interface iGoal {
-  shortName: string;
+  shortName: number;
   fullName: string;
 }

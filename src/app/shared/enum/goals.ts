@@ -1,0 +1,7 @@
+export enum Goals {
+  WEIGHT_LOSS,
+  WEIGHT_MAINTENANCE,
+  WEIGHT_GAIN,
+  DIET_PLAN,
+  WORKOUT_ROUTINE
+}

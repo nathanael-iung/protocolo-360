@@ -1,19 +1,26 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { MessageService } from "primeng/api";
+import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { Subject, takeUntil } from "rxjs";
 import { ToastService } from "./toast-service";
-import { Toast as PrimeNGToast } from 'primeng/toast';
+import { toast } from 'ngx-sonner';
+import { HlmToasterImports } from '@spartan-ng/helm/sonner';
+
+enum eToastColor {
+  SUCCESS = 'var(--color-green-400)',
+  WARNING = 'var(--color-yellow-400)',
+  ERROR = 'var(--color-red-400)'
+}
 
 @Component({
   selector: 'app-toast',
-  imports: [PrimeNGToast],
+  imports: [
+    HlmToasterImports
+  ],
   templateUrl: './toast.html',
   styleUrl: './toast.css',
 })
 export class Toast implements OnInit, OnDestroy {
 
   toastService = inject(ToastService)
-  messageService = inject(MessageService)
 
   width = ''
 
@@ -23,6 +30,8 @@ export class Toast implements OnInit, OnDestroy {
   subToastWarning$ = this.toastService.listenWarning()
   subToastDanger$ = this.toastService.listenDanger()
 
+  toastColor = signal<eToastColor>(eToastColor.SUCCESS)
+
   ngOnInit(): void {
    this.listenSubsToShowToast()
   }
@@ -30,27 +39,24 @@ export class Toast implements OnInit, OnDestroy {
   listenSubsToShowToast(): void {
     this.subToastSuccess$.pipe(takeUntil(this.sub$)).subscribe(data => {
       this.checkWidth()
-      this.messageService.add({
-        severity: 'success',
-        summary: data?.title ?? '',
-        detail: data?.message ?? ''
-      })
+      this.toastColor.set(eToastColor.SUCCESS)
+      toast.success(data?.title ?? '', {
+        description: data?.message ?? '',
+      });
     })
     this.subToastWarning$.pipe(takeUntil(this.sub$)).subscribe(data => {
       this.checkWidth()
-      this.messageService.add({
-        severity: 'warn',
-        summary: data?.title ?? '',
-        detail: data?.message ?? ''
-      })
+      this.toastColor.set(eToastColor.WARNING)
+      toast.warning(data?.title ?? '', {
+        description: data?.message ?? ''
+      });
     })
     this.subToastDanger$.pipe(takeUntil(this.sub$)).subscribe(data => {
       this.checkWidth()
-      this.messageService.add({
-        severity: 'error',
-        summary: data?.title ?? '',
-        detail: data?.message ?? ''
-      })
+      this.toastColor.set(eToastColor.ERROR)
+      toast.error(data?.title ?? '', {
+        description: data?.message ?? ''
+      });
     })
   }
 

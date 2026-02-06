@@ -1,1 +1,8 @@
-<p-toast position="center" life="4000" [style]="{width: width}"></p-toast>
+<hlm-toaster
+  [duration]="4000"
+  position="top-center"
+  [style]="{
+    '--normal-bg': toastColor(),
+    '--normal-text': 'var(--color-text)',
+  }"
+/>

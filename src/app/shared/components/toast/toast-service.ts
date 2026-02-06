@@ -15,10 +15,10 @@ export class ToastService {
   private toastSuccess$ = this.toastSuccess.asObservable();
 
   private toastWarning = new Subject<iToast>();
-  toastWarning$ = this.toastWarning.asObservable();
+  private toastWarning$ = this.toastWarning.asObservable();
 
   private toastDanger = new Subject<iToast>();
-  toastDanger$ = this.toastDanger.asObservable();
+  private toastDanger$ = this.toastDanger.asObservable();
 
   success(message: string, title?: string): void {
     const data = {

@@ -1,48 +1,60 @@
 <form class="w-full flex flex-col items-center justify-between gap-5 max-h-[55vh] overflow-y-auto">
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@fullName">
-      Nome social
-    </span>
-    <input type="text" pInputText [formField]="userInformationForm.fullName" />
-  </label>
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@birthDate">
-      Data de nascimento
-    </span>
-    <input type="text" pInputText [formField]="userInformationForm.birthDate" />
-  </label>
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@phoneNumber">
-      Celular
-    </span>
-    <input type="text" pInputText [formField]="userInformationForm.phoneNumber" />
-  </label>
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@gender">
-      Sexo
-    </span>
-    <input type="text" pInputText [formField]="userInformationForm.gender" />
-  </label>
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@email">
-      E-mail
-    </span>
-    <input type="text" pInputText [formField]="userInformationForm.email" />
-  </label>
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@password">
-      Senha
-    </span>
-    <p-password [formField]="userInformationForm.password" [toggleMask]="true"
-      [feedback]="false" inputStyleClass="w-full"
-      autocomplete="new-password" />
-  </label>
-  <label class="flex flex-col w-full">
-    <span class="label text-lg" i18n="@@confirmPassword">
-      Confirmar senha
-    </span>
-    <p-password [formField]="userInformationForm.confirmPassword" [toggleMask]="true"
-      [feedback]="false" inputStyleClass="w-full"
-      autocomplete="new-password" />
-  </label>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@fullName">Usuário</label>
+    <input hlmInput [formField]="userInformationForm.fullName" autocomplete="new-password" />
+  </div>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@birthDate"> Data de nascimento </label>
+    <hlm-date-picker
+      class="w-full"
+      buttonId="date"
+      captionLayout="dropdown"
+      [autoCloseOnSelect]="true"
+      [min]="minDate()"
+      [max]="maxDate()"
+      [formatDate]="formatDate"
+      (dateChange)="dateChange($event)"
+    >
+      <span>Selecione</span>
+    </hlm-date-picker>
+  </div>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@phoneNumber"> Celular </label>
+    <input hlmInput [formField]="userInformationForm.phoneNumber" autocomplete="new-password" />
+  </div>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@gender"> Sexo </label>
+    <brn-select class="inline-block" placeholder="Selecione" (valueChange)="genderChange($event)">
+			<hlm-select-trigger class="w-full">
+				<hlm-select-value />
+			</hlm-select-trigger>
+			<hlm-select-content>
+        @for (gender of genders(); track $index) {
+          <hlm-option [value]="gender.value">{{ gender.label }}</hlm-option>
+        }
+			</hlm-select-content>
+		</brn-select>
+  </div>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@email"> E-mail </label>
+    <input hlmInput [formField]="userInformationForm.email" autocomplete="new-password" />
+  </div>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@password"> Senha </label>
+    <input
+      hlmInput
+      type="password"
+      [formField]="userInformationForm.password"
+      autocomplete="new-password"
+    />
+  </div>
+  <div class="flex flex-col w-full gap-1">
+    <label hlmLabel i18n="@@confirmPassword"> Confirmar senha </label>
+    <input
+      hlmInput
+      type="password"
+      [formField]="userInformationForm.confirmPassword"
+      autocomplete="new-password"
+    />
+  </div>
 </form>

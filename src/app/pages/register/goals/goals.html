@@ -1,5 +1,9 @@
-<div class="flex flex-wrap justify-center max-h-[55vh] gap-5 overflow-y-auto w-full">
+<hlm-toggle-group
+  class="flex flex-wrap justify-center max-h-[55vh] gap-5 overflow-y-auto w-full"
+  type="multiple"
+  (valueChange)="goalChanged($event)"
+>
   @for (goal of goals(); track $index) {
-    <p-togglebutton [onLabel]="goal.fullName" [offLabel]="goal.fullName" />
+    <button hlmToggleGroupItem [value]="goal.shortName">{{ goal.fullName }}</button>
   }
-</div>
+</hlm-toggle-group>
