@@ -39,6 +39,7 @@ export class UserInformation {
   userInformationForm = form(this.userInformation, (field) => {
     required(field.fullName, { message: 'Username is required' });
     required(field.birthDate, { message: 'Birth date is required' });
+    required(field.phoneNumber, { message: 'Phone number is required' });
     required(field.email, { message: 'E-mail is required' });
     required(field.password, { message: 'Password is required' });
     minLength(field.password, 6, { message: 'Password must be at least 6 characters long' });
