@@ -1,11 +1,11 @@
 <div class="w-screen h-screen flex flex-col items-center justify-center">
   <div class="flex items-center justify-center gap-x-2 pb-10">
-    <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
-    <p class="font-bold text-3xl" i18n="@@appName">
-      Protocolo 360
-    </p>
+    <img src="assets/icons/protocolo-360.svg" alt="Protocolo 360" class="w-8" />
+    <p class="font-bold text-3xl" i18n="@@appName">Protocolo 360</p>
   </div>
-  <div class="w-[90vw] md:w-[45vw] flex flex-col items-center justify-between gap-5 p-10 rounded-md bg-[var(--color-surface)]">
+  <div
+    class="w-[90vw] md:w-[45vw] flex flex-col items-center justify-between gap-5 p-10 rounded-md bg-[var(--color-surface)]"
+  >
     <div class="flex flex-col items-center gap-2">
       <p class="text-2xl font-semibold">Bem-vindo!</p>
       <p class="text-xs font-light">Insira suas informações abaixo para prosseguir</p>
@@ -13,39 +13,59 @@
     <form class="w-full flex flex-col items-center justify-between gap-5">
       <div class="flex flex-col w-full gap-1">
         <label hlmLabel i18n="@@user">E-mail</label>
-        <div hlmInputGroup [class.border-red-500]="isEmailInvalid()">
+        <div hlmInputGroup [class.border-red-400]="isEmailInvalid()">
           <input hlmInputGroupInput [formField]="loginForm.email" autocomplete="new-password" />
           <div hlmInputGroupAddon class="mr-2.5">
-              <ng-icon name="lucideUser" />
+            <ng-icon name="lucideUser" />
           </div>
         </div>
       </div>
       <div class="flex flex-col w-full gap-1">
         <label hlmLabel i18n="@@password">Senha</label>
-        <div hlmInputGroup [class.border-red-500]="isPasswordInvalid()">
-          <input hlmInputGroupInput type="password" [formField]="loginForm.password" autocomplete="new-password" />
+        <div hlmInputGroup [class.border-red-400]="isPasswordInvalid()">
+          <input
+            hlmInputGroupInput
+            type="password"
+            [formField]="loginForm.password"
+            autocomplete="new-password"
+          />
           <div hlmInputGroupAddon class="mr-2.5">
-              <ng-icon name="lucideLock" />
+            <ng-icon name="lucideLock" />
           </div>
         </div>
       </div>
-      <button hlmBtn type="button" class="w-full flex items-center justify-center gap-2 cursor-pointer"
-        appKeyEvent="Enter" (event)="submitLogin()" (click)="submitLogin()">
+      <button
+        hlmBtn
+        type="button"
+        class="w-full flex items-center justify-center gap-2 cursor-pointer"
+        appKeyEvent="Enter"
+        (event)="submitLogin()"
+        (click)="submitLogin()"
+      >
         Login
         <ng-icon hlm size="sm" name="lucideMoveRight" />
       </button>
-      <span class="text-primary cursor-pointer text-sm" i18n="@@resetPassword"
-        (click)="navigateToResetPassword()">Esqueci minha senha</span>
+      <span
+        class="text-primary cursor-pointer text-sm"
+        i18n="@@resetPassword"
+        (click)="navigateToResetPassword()"
+        >Esqueci minha senha</span
+      >
       <div class="flex gap-2 items-center">
         <hlm-separator class="!w-50" />
         <span class="font-semibold">OU</span>
         <hlm-separator class="!w-50" />
       </div>
-      <button hlmBtn type="button" variant="secondary" class="w-full flex items-center justify-center gap-2 cursor-pointer"
-        (click)="navigateToRegister()">
+      <button
+        hlmBtn
+        type="button"
+        variant="secondary"
+        class="w-full flex items-center justify-center gap-2 cursor-pointer"
+        (click)="navigateToRegister()"
+      >
         Registre-se aqui
         <ng-icon hlm size="sm" name="lucideCirclePlus" />
-      </button>  
+      </button>
     </form>
     <span></span>
   </div>

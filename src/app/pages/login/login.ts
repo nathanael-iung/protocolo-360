@@ -1,6 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, TemplateRef, viewChild, ViewChild } from '@angular/core';
 import { iLoginForm } from "./login.model";
-import { form, required, FormField, minLength } from '@angular/forms/signals';
+import { form, required, FormField, minLength, email } from '@angular/forms/signals';
 import { CommonModule } from "@angular/common";
 import { KeyEvent } from "@shared/directives/key-event/key-event";
 import { ToastService } from "@shared/components/toast/toast-service";
@@ -27,7 +27,7 @@ import { AuthService } from "@shared/services/auth/auth-service";
     HlmButtonImports,
     HlmIconImports,
     HlmLabelImports,
-    HlmSeparatorImports,
+    HlmSeparatorImports  
   ],
   templateUrl: './login.html',
   styleUrl: './login.css'
@@ -48,6 +48,7 @@ export class Login {
     required(field.password, { message: 'Password is required' });
     minLength(field.email, 4, { message: 'Email must be at least 4 characters long' });
     minLength(field.password, 6, { message: 'Password must be at least 6 characters long' });
+    email(field.email, { message: 'Email must have a valid format' });
   })
 
   isEmailInvalid = signal(false)
@@ -75,6 +76,7 @@ export class Login {
     .subscribe({
       next: () => {
         this.toastService.success("Login realizado com sucesso!")
+        this.router.navigate(['dashboard'])
       }
     })
 
