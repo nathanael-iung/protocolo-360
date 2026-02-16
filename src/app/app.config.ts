@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { errorHandlerInterceptor } from "@core/interceptors/error-handler/error-handler.interceptor";
 import { loadingInterceptor } from "@core/interceptors/loading/loading.interceptor";
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
         errorHandlerInterceptor,
         loadingInterceptor
       ])
-    )
+    ),
+    provideEnvironmentNgxMask()
   ]
 };
