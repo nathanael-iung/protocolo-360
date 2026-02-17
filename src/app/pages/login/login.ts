@@ -13,7 +13,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { take } from "rxjs";
-import { AuthService } from "@shared/services/auth/auth-service";
+import { AuthService } from "@core/services/auth/auth-service";
+import { TokenMetadataService } from "@core/services/token-metadata/token-metadata-service";
+import { iTokenMetadata } from "@shared/models/token.model";
 
 @Component({
   selector: 'app-login',
@@ -37,6 +39,7 @@ export class Login {
   toastService = inject(ToastService)
   router = inject(Router)
   authService = inject(AuthService)
+  tokenMetadataService = inject(TokenMetadataService)
 
   login = signal<iLoginForm>({
     email: '',
@@ -74,7 +77,8 @@ export class Login {
       take(1)
     )
     .subscribe({
-      next: () => {
+      next: (response) => {
+        this.tokenMetadataService.setTokenMetadata(response.data as iTokenMetadata)
         this.toastService.success("Login realizado com sucesso!")
         this.router.navigate(['dashboard'])
       }

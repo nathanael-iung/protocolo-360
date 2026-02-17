@@ -8,6 +8,7 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { errorHandlerInterceptor } from "@core/interceptors/error-handler/error-handler.interceptor";
 import { loadingInterceptor } from "@core/interceptors/loading/loading.interceptor";
 import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { authInterceptor } from "@core/interceptors/auth/auth-interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +19,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([
         errorHandlerInterceptor,
-        loadingInterceptor
+        loadingInterceptor,
+        authInterceptor
       ])
     ),
     provideEnvironmentNgxMask()

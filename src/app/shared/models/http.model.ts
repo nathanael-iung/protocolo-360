@@ -1,5 +1,5 @@
 export interface iHttpResponse<T> {
-  data: null | T;
+  data: T;
   message: string;
   status: number;
 }
