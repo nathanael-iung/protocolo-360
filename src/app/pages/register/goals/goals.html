@@ -1,9 +1,45 @@
-<hlm-toggle-group
-  class="flex flex-wrap justify-center max-h-[55vh] gap-5 overflow-y-auto w-full"
-  type="multiple"
-  (valueChange)="goalChanged($event)"
->
-  @for (goal of goals(); track $index) {
-    <button hlmToggleGroupItem [value]="goal.shortName">{{ goal.fullName }}</button>
-  }
-</hlm-toggle-group>
+<div class="flex flex-col gap-5">
+  <div class="h-[55vh] overflow-y-auto w-full">
+    <hlm-toggle-group
+      class="flex flex-wrap justify-center gap-5"
+      type="multiple"
+      (valueChange)="goalChanged($event)"
+    >
+      @if (goals$ | async; as goals) {
+        @if(goals?.data?.goals?.length){
+          @for (goal of goals?.data?.goals; track $index) {
+            <button hlmToggleGroupItem [value]="goal.id">{{ goal.fullName }}</button>
+          }
+        }
+      } @else {
+        @for (skeleton of [1, 2, 3, 4, 5]; track $index) {
+          <hlm-skeleton class="h-[30px] w-[125px] rounded-lg" />
+        }
+      }
+    </hlm-toggle-group>
+  </div>
+
+  <div class="flex justify-end gap-2 w-full">
+    <button
+      hlmBtn
+      type="button"
+      variant="secondary"
+      size="lg"
+      class="cursor-pointer rounded-md p-2"
+      (click)="previousStep()"
+    >
+      Voltar
+    </button>
+    <button
+      hlmBtn
+      type="button"
+      size="lg"
+      class="bg-primary cursor-pointer rounded-md p-2"
+      appKeyEvent="Enter"
+      (event)="nextStep()"
+      (click)="nextStep()"
+    >
+      Próximo
+    </button>
+  </div>
+</div>

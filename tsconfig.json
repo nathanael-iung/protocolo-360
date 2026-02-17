@@ -85,6 +85,9 @@
       ],
       "@spartan-ng/helm/dialog": [
         "./libs/ui/dialog/src/index.ts"
+      ],
+      "@spartan-ng/helm/skeleton": [
+        "./libs/ui/skeleton/src/index.ts"
       ]
     }
   },

@@ -1,7 +1,7 @@
 export enum Goals {
-  WEIGHT_LOSS,
-  WEIGHT_MAINTENANCE,
-  WEIGHT_GAIN,
-  DIET_PLAN,
-  WORKOUT_ROUTINE
+  WEIGHT_LOSS = "Perda de peso",
+  WEIGHT_MAINTENANCE = "Manutenção de peso",
+  WEIGHT_GAIN = "Ganho de peso",
+  DIET_PLAN = "Plano alimentar",
+  WORKOUT_ROUTINE = "Rotina de exercícios"
 }

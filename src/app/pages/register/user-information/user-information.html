@@ -1,60 +1,78 @@
-<form class="w-full flex flex-col items-center justify-between gap-5 max-h-[55vh] overflow-y-auto">
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@fullName">Usuário</label>
-    <input hlmInput [formField]="userInformationForm.fullName" autocomplete="new-password" />
+<form class="flex flex-col gap-5" (submit)="nextStep()">
+  <div class="w-full h-[55vh] overflow-y-auto grid grid-cols-6 gap-x-2 gap-y-4">
+    <div class="flex flex-col gap-1 col-span-6">
+      <label hlmLabel i18n="@@fullName">Nome completo</label>
+      <input hlmInput [formField]="userInformationForm.fullName" autocomplete="new-password" />
+    </div>
+    <div class="flex flex-col gap-1 col-span-3 lg:col-span-2">
+      <label hlmLabel i18n="@@birthDate"> Data de nasc. </label>
+       <input hlmInput [formField]="userInformationForm.birthDate" autocomplete="new-password"
+          mask="d0/M0/0000" [dropSpecialCharacters]="false" placeholder="DD/MM/AAAA"
+          (change)="validateDate()" />
+    </div>
+    <div class="flex flex-col gap-1 col-span-3 lg:col-span-2">
+      <label hlmLabel i18n="@@gender"> Sexo </label>
+      <brn-select class="inline-block" placeholder="Selecione" (valueChange)="genderChange($event)">
+        <hlm-select-trigger class="w-full {{ isGenderInvalid() ? 'border-red-400' : '' }}">
+          <hlm-select-value />
+        </hlm-select-trigger>
+        <hlm-select-content>
+          @for (gender of genders(); track $index) {
+            <hlm-option [value]="gender.value">{{ gender.label }}</hlm-option>
+          }
+        </hlm-select-content>
+      </brn-select>
+    </div>
+    <div class="flex flex-col gap-1 col-span-4 lg:col-span-2">
+      <div class="flex flex-col w-full gap-1">
+        <label hlmLabel i18n="@@phone"> Celular </label>
+        <input hlmInput [formField]="userInformationForm.phone" autocomplete="new-password"
+          [dropSpecialCharacters]="false" mask="(00) 0 0000-0000||(00) 0000-0000" />
+      </div>
+    </div>
+    <div class="flex flex-col gap-1 col-span-6">
+      <label hlmLabel i18n="@@email"> E-mail </label>
+      <input hlmInput [formField]="userInformationForm.email" autocomplete="new-password" />
+    </div>
+    <div class="flex flex-col gap-1 col-span-6">
+      <label hlmLabel i18n="@@password"> Senha </label>
+      <input
+        hlmInput
+        type="password"
+        [formField]="userInformationForm.password"
+        autocomplete="new-password"
+      />
+    </div>
+    <div class="flex flex-col gap-1 col-span-6">
+      <label hlmLabel i18n="@@confirmPassword"> Confirmar senha </label>
+      <input
+        hlmInput
+        type="password"
+        [formField]="userInformationForm.confirmPassword"
+        autocomplete="new-password"
+      />
+    </div>
   </div>
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@birthDate"> Data de nascimento </label>
-    <hlm-date-picker
-      class="w-full"
-      buttonId="date"
-      captionLayout="dropdown"
-      [autoCloseOnSelect]="true"
-      [min]="minDate()"
-      [max]="maxDate()"
-      [formatDate]="formatDate"
-      (dateChange)="dateChange($event)"
+  <div class="flex justify-end gap-2 w-full">
+    <button
+      hlmBtn
+      type="button"
+      variant="secondary"
+      size="lg"
+      class="cursor-pointer rounded-md p-2"
+      (click)="previousStep()"
     >
-      <span>Selecione</span>
-    </hlm-date-picker>
-  </div>
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@phoneNumber"> Celular </label>
-    <input hlmInput [formField]="userInformationForm.phoneNumber" autocomplete="new-password" />
-  </div>
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@gender"> Sexo </label>
-    <brn-select class="inline-block" placeholder="Selecione" (valueChange)="genderChange($event)">
-			<hlm-select-trigger class="w-full">
-				<hlm-select-value />
-			</hlm-select-trigger>
-			<hlm-select-content>
-        @for (gender of genders(); track $index) {
-          <hlm-option [value]="gender.value">{{ gender.label }}</hlm-option>
-        }
-			</hlm-select-content>
-		</brn-select>
-  </div>
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@email"> E-mail </label>
-    <input hlmInput [formField]="userInformationForm.email" autocomplete="new-password" />
-  </div>
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@password"> Senha </label>
-    <input
-      hlmInput
-      type="password"
-      [formField]="userInformationForm.password"
-      autocomplete="new-password"
-    />
-  </div>
-  <div class="flex flex-col w-full gap-1">
-    <label hlmLabel i18n="@@confirmPassword"> Confirmar senha </label>
-    <input
-      hlmInput
-      type="password"
-      [formField]="userInformationForm.confirmPassword"
-      autocomplete="new-password"
-    />
+      Voltar
+    </button>
+    <button
+      hlmBtn
+      type="submit"
+      size="lg"
+      class="bg-primary cursor-pointer rounded-md p-2"
+      appKeyEvent="Enter"
+      (event)="nextStep()"
+    >
+      Próximo
+    </button>
   </div>
 </form>

@@ -1,56 +1,48 @@
-<div class="w-screen h-screen flex flex-col items-center justify-center">
+<div class="w-screen h-screen flex flex-col items-center justify-center overflow-x-hidden gap-10">
   <div class="flex items-center justify-center gap-x-2 pb-10">
-    <img src="assets/icons/protocolo-360.svg"  alt="Protocolo 360" class="w-8">
-    <p class="font-bold text-3xl" i18n="@@appName">
-      Protocolo 360
-    </p>
+    <img src="assets/icons/protocolo-360.svg" alt="Protocolo 360" class="w-8" />
+    <p class="font-bold text-3xl" i18n="@@appName">Protocolo 360</p>
   </div>
-  <div class="w-[90vw] min-w-[45vw] flex flex-col items-center justify-between gap-5 p-10 rounded-md bg-[var(--color-surface)]">
+  <div
+    class="w-[90vw] min-w-[45vw] flex flex-col items-center justify-between gap-5 px-10 pt-10 pb-2.5 rounded-md bg-[var(--color-surface)]"
+  >
     <div class="flex flex-col items-center gap-2">
       <p class="text-2xl font-semibold">Crie uma conta</p>
       <p class="text-xs font-light">Sua jornada começa hoje</p>
     </div>
     <div class="card flex justify-center w-full min-h-[60vh]">
-
       <hlm-tabs [tab]="activeTab()" (tabActivated)="tabChanged($event)" class="w-full">
         <hlm-tabs-list class="w-full">
-          <button hlmTabsTrigger="user-information" [class.!bg-primary]="activeTab() === 'user-information'">
+          <button
+            hlmTabsTrigger="user-information"
+            [disabled]="true"
+            [class.!bg-primary]="activeTab() === 'user-information'"
+          >
             <ng-icon name="lucideUser" />
           </button>
-          <button hlmTabsTrigger="goals" [class.!bg-primary]="activeTab() === 'goals'">
+          <button hlmTabsTrigger="goals" [disabled]="true" [class.!bg-primary]="activeTab() === 'goals'">
             <ng-icon name="lucideTrophy" />
           </button>
-          <button hlmTabsTrigger="welcome" [class.!bg-primary]="activeTab() === 'welcome'">
+          <button hlmTabsTrigger="welcome" [disabled]="true" [class.!bg-primary]="activeTab() === 'welcome'">
             <ng-icon name="lucideStar" />
           </button>
         </hlm-tabs-list>
         <div hlmTabsContent="user-information">
           <div class="py-3">
-            <app-user-information />
+            <app-user-information (userInformationFields)="setUserInformationFields($event)" />
           </div>
         </div>
         <div hlmTabsContent="goals">
           <div class="py-3">
-            <app-goals />
+            <app-goals (selectedGoals)="setSelectedGoals($event)" />
           </div>
         </div>
         <div hlmTabsContent="welcome">
           <div class="py-3">
-            <app-welcome />
+            <app-welcome (submitFields)="createRegister()" />
           </div>
         </div>
       </hlm-tabs>
-    </div>
-
-    <div class="flex justify-end gap-2 w-full">
-      <button hlmBtn type="button" variant="secondary" size="lg" class="cursor-pointer rounded-md p-2"
-        (click)="true">
-        Voltar
-      </button>
-      <button hlmBtn type="button" size="lg" class="bg-primary cursor-pointer rounded-md p-2"
-        appKeyEvent="Enter" (event)="true" (click)="true">
-        Próximo
-      </button>
     </div>
   </div>
 </div>
