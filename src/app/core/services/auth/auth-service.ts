@@ -45,6 +45,7 @@ export class AuthService {
         if (this.refreshTimer)
           clearTimeout(this.refreshTimer);
         this.tokenMetadataService.clearTokenMetadata();
+        this.clearSessionHint();
       })
     )
   }
@@ -58,6 +59,18 @@ export class AuthService {
         }
       })
     )
+  }
+
+  setSessionHint(): void {
+    localStorage.setItem('has_session', 'true');
+  }
+
+  getsessionHint(): boolean {
+    return localStorage.getItem('has_session') === 'true';
+  }
+
+  clearSessionHint(): void {
+    localStorage.removeItem('has_session');
   }
 
 }

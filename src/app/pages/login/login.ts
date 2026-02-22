@@ -78,7 +78,12 @@ export class Login {
     )
     .subscribe({
       next: (response) => {
-        this.tokenMetadataService.setTokenMetadata(response.data as iTokenMetadata)
+        const tokenMetadata = {
+          ...response.data,
+          isAuthenticated: true
+        }
+        this.tokenMetadataService.setTokenMetadata(tokenMetadata)
+        this.authService.setSessionHint()
         this.toastService.success("Login realizado com sucesso!")
         this.router.navigate(['dashboard'])
       }

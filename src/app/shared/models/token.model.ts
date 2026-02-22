@@ -4,4 +4,5 @@ export interface iTokenMetadata {
   roles: string[];
   exp: number;
   iat: number;
+  isAuthenticated?: boolean;
 }

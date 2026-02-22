@@ -12,6 +12,7 @@ export class TokenMetadataService {
   private roles = signal<string[]>([]);
   private exp = signal<number>(0);
   private iat = signal<number>(0);
+  private isAuthenticated = signal<boolean>(false);
 
   getEmail(): string {
     return this.email();
@@ -33,12 +34,17 @@ export class TokenMetadataService {
     return this.iat();
   }
 
+  getIsAuthenticated(): boolean {
+    return this.isAuthenticated();
+  }
+
   setTokenMetadata(token: iTokenMetadata): void {
     this.email.set(token.email);
     this.fullName.set(token.fullName);
     this.roles.set(token.roles);
     this.exp.set(token.exp);
     this.iat.set(token.iat);
+    this.isAuthenticated.set(true);
   }
 
   clearTokenMetadata(): void {
@@ -47,6 +53,7 @@ export class TokenMetadataService {
     this.roles.set([]);
     this.exp.set(0);
     this.iat.set(0);
+    this.isAuthenticated.set(false);
   }
 
 }

@@ -5,11 +5,15 @@ import { AuthService } from "@core/services/auth/auth-service";
 import { catchError, switchMap, throwError } from "rxjs";
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  
+
   const authService = inject(AuthService);
   const router = inject(Router);
 
   const clonedReq = req.clone({ withCredentials: true });
+
+  if (req.url.includes('/api/v1/auth/login') || req.url.includes('/api/v1/auth/register')) {
+    return next(req.clone({ withCredentials: true }));
+  }
 
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
