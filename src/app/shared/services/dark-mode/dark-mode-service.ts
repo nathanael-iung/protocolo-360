@@ -18,4 +18,8 @@ export class DarkModeService {
     localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
   }
 
+  isDarkModeEnabled(): boolean {
+    return !!document.querySelector('html')?.classList?.contains('dark');
+  }
+
 }

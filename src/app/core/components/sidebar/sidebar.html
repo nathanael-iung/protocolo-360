@@ -1,1 +1,57 @@
-<p>sidebar works!</p>
+<div
+  class="flex flex-col justify-between h-full border-r-1 border-r-[var(--border)] px-1 lg:px-3 py-4 w-[85px] lg:w-[200px]"
+>
+  <div class="flex flex-col gap-5">
+    <a href="/dashboard" class="flex items-center justify-center lg:justify-start gap-x-2">
+      <img src="assets/icons/protocolo-360.svg" alt="Protocolo 360" class="w-6" />
+      <p class="font-bold text-lg hidden lg:block" i18n="@@appName">Protocolo 360</p>
+    </a>
+    <hlm-separator />
+    <div class="flex flex-col gap-2.5">
+      @for (menu of _menus; track $index) {
+        <a
+          [href]="menu.url"
+          class="flex items-center justify-center lg:justify-start gap-3 py-2 lg:px-2 hover:bg-[var(--accent)] rounded-md"
+        >
+          <ng-icon [name]="menu.icon" class="text-2xl text-primary cursor-pointer" />
+          <span class="text-sm font-bold hidden lg:block">{{ menu.title }}</span>
+        </a>
+      }
+    </div>
+  </div>
+  <div class="flex flex-col gap-3">
+    <div class="flex justify-center lg:justify-start gap-3">
+      <hlm-avatar class="cursor-pointer">
+        <span hlmAvatarFallback>{{ nameInitials() ? nameInitials() : 'U' }}</span>
+        <hlm-avatar-badge class="bg-primary" />
+      </hlm-avatar>
+      <span class="text-lg font-semibold hidden lg:flex">{{
+        firstAndLastName() ? firstAndLastName() : 'Bem-vindo'
+      }}</span>
+    </div>
+    <hlm-separator />
+    <div class="flex justify-center lg:justify-start gap-3 lg:px-2">
+      <div class="flex flex-col items-center lg:flex-row lg:justify-between gap-3 w-full">
+        @if (isDarkModeEnabled()) {
+          <ng-icon
+            name="lucideSun"
+            class="text-2xl text-orange-300 cursor-pointer"
+            (click)="toggleDarkMode()"
+          />
+        } @else {
+          <ng-icon
+            name="lucideMoon"
+            class="text-2xl text-sky-300 cursor-pointer"
+            (click)="toggleDarkMode()"
+          />
+        }
+        <ng-icon
+          name="lucideLogOut"
+          HlmTooltip="123"
+          class="text-2xl text-red-300 cursor-pointer"
+          (click)="logout()"
+        />
+      </div>
+    </div>
+  </div>
+</div>
